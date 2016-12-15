@@ -110,10 +110,10 @@
 								<div class="col-md-12" id="msgcontent">
 									<div class="searchs col-md-12" >
 										<label for="">查询：</label>
-										<input type="text" placeholder="Search" class="form-control">
+										<input type="text" placeholder="Search" class="form-control" ng-model="searchroute">
 									</div>
 									<div class="row">
-										<a href="#" onclick="toselectpage(this)" ng-repeat="task in routes" alt="{{task.id}}">
+										<a href="#" onclick="toselectpage(this)" ng-repeat="task in routes | filter:searchroute" alt="{{task.id}}">
 										<div class="col-md-6" style="padding:10px;">
 											<div class="col-md-12" id="onetravel">
 												<div class="row">

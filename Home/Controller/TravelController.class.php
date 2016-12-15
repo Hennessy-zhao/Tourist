@@ -48,8 +48,13 @@ class TravelController extends Controller {
     //获取最受欢迎的路线
     public function getmost(){
         $kinds=I('get.kinds');
-        $where['kinds']=$kinds;
-        $list=M('routes')->field(true)->where($where)->order('selectnumber desc')->limit(3)->select();
+        if ($kinds==0) {
+            $list=M('routes')->field(true)->order('selectnumber desc')->limit(3)->select();
+        }else{
+            $where['kinds']=$kinds;
+            $list=M('routes')->field(true)->where($where)->order('selectnumber desc')->limit(3)->select();
+        }
+        
 
         $arrs="[";
         
@@ -70,9 +75,14 @@ class TravelController extends Controller {
     //获取最受欢迎的路线
     public function getroutes(){
         $kinds=I('get.kinds');
-        $where['kinds']=$kinds;
-        $list=M('routes')->field(true)->where($where)->select();
-
+        if ($kinds==0) {
+            $list=M('routes')->field(true)->select();
+        }
+        else{
+           $where['kinds']=$kinds;
+            $list=M('routes')->field(true)->where($where)->select(); 
+        }
+        
         $arrs="[";
         
          foreach($list as $list){

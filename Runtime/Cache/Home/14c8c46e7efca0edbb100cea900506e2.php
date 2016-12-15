@@ -1,24 +1,22 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
-	<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
-    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/select/pay.css">
+	<link href="/tourist/Public/css/bootstrap.min.css" rel="stylesheet">
+	<script src="/tourist/Public/js/jquery-1.10.2.min.js"></script>
+    <script src="/tourist/Public/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/tourist/Public/css/select/pay.css">
 </head>
 <body>
 
 	<header>
 		<ul>
-			<if condition="($_SESSION['username'] eq NULL)"> 
-                <a data-toggle="modal" data-target="#myModal"><li class="navtitle">登陆</li>
-            <else />
-                <form action="{:U('Home/Index/Sessionuse','','')}" id="sessionuse">
-                    <a onclick="change()"><li class="navtitle">{$_SESSION['username']}</li></a>
-                </form>
-            </if>
+			<?php if(($_SESSION['username'] == NULL)): ?><a data-toggle="modal" data-target="#myModal"><li class="navtitle">登陆</li>
+            <?php else: ?>
+                <form action="<?php echo U('Home/Index/Sessionuse','','');?>" id="sessionuse">
+                    <a onclick="change()"><li class="navtitle"><?php echo ($_SESSION['username']); ?></li></a>
+                </form><?php endif; ?>
 			</a>
 			<a href="#"><li class="navtitle">
 				旅游路线
@@ -34,7 +32,7 @@
 				</ul>
 			</li>
 			</a>
-			<a href="{:U('Home/Index/index','','')}"><li class="navtitle">主页</li></a>
+			<a href="<?php echo U('Home/Index/index','','');?>"><li class="navtitle">主页</li></a>
 		</ul>
 	</header>
 
@@ -63,7 +61,7 @@
                        </div>
                        <div class="modal-footer">
                           <a class="btn btn-default" target="_blank" 
-                              href="{:U('Home/User/index','','')}">
+                              href="<?php echo U('Home/User/index','','');?>">
                              注册
                           </a>
                           <input type="button" id="login"  class="btn btn-primary" value="登陆">
@@ -74,12 +72,12 @@
             </div><!-- /.modal -->
 
 
-	<section id="container" alt="{$price}" class="col-md-10 col-md-offset-1">
-		<form action="{:U('Home/Select/addorder','','')}" method="post">
+	<section id="container" alt="<?php echo ($price); ?>" class="col-md-10 col-md-offset-1">
+		<form action="<?php echo U('Home/Select/addorder','','');?>" method="post">
 		<h3>支付信息</h3>
 		<div class="onedata col-md-12">
 			<label class="col-md-3">您的旅游项目是：</label>
-			<p class="col-md-9">{$routename}</p>
+			<p class="col-md-9"><?php echo ($routename); ?></p>
 		</div>
 		<div class="onedata col-md-12">
 			<label class="col-md-3">请选择报名人数：</label>
@@ -110,7 +108,7 @@
 	</section>
 
 
-<script src="__PUBLIC__/js/travel/pay.js"></script>
+<script src="/tourist/Public/js/travel/pay.js"></script>
 
 	
 </body>

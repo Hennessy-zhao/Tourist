@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/travel/popular.css">
 
 </head>
-<body>
+<body ng-app="myapp" style="background-image: url(__PUBLIC__/images/travel/bag7.jpg);">
 	<header>
 		<ul>
 			<if condition="($_SESSION['username'] eq NULL)"> 
@@ -23,14 +23,14 @@
 			<a href="#"><li class="navtitle">
 				旅游路线
 				<ul class="secnav">
-					<li>热门游</li>
-					<li>周边游</li>
-					<li>国内游</li>
-					<li>港澳台游</li>
-					<li>日韩游</li>
-					<li>欧美游</li>
-					<li>边境游</li>
-					<li>澳新非游</li>
+					<li><a href="{:U('Home/Travel/popular','','')}">热门游</a></li>
+					<li><a href="{:U('Home/Travel/around','','')}">周边游</a></li>
+					<li><a href="{:U('Home/Travel/internal','','')}">国内游</a></li>
+					<li><a href="{:U('Home/Travel/harbor','','')}">港澳台游</a></li>
+					<li><a href="{:U('Home/Travel/island','','')}">日韩游</a></li>
+					<li><a href="{:U('Home/Travel/europe','','')}">欧美游</a></li>
+					<li><a href="{:U('Home/Travel/border','','')}">边境游</a></li>
+					<li><a href="{:U('Home/Travel/austra','','')}">澳新非游</a></li>
 				</ul>
 			</li>
 			</a>
@@ -74,65 +74,30 @@
             </div><!-- /.modal -->
 
 
-	<div id="container">
+	<div id="container" ng-controller="contentController">
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1" id="body">
 				<div class="column">
 					<div class="col-md-12" id="toppic">
-						<h4>热&nbsp;门&nbsp;游</h4>
+						<h4>边&nbsp;境&nbsp;游</h4>
 						<p>推荐景点</p>
 						<div class="row" style="padding:0px;">
-							<a href="{:U('Home/Select/index','','')}">
+							<a class="toselect" href="#" onclick="toselectpage(this)" ng-repeat="task in mosts" alt="{{task.id}}">
 							<div class="col-md-4" style="padding:0px;">
 								<div class="boxes">
 									<div class="grid_4">
 										<figure>
-											<div><img width="100%" height="300px" src="__PUBLIC__/images/welfare/pic1.jpg" alt=""></div>
+											<div><img width="100%" height="300px" src="__PUBLIC__/routepic/{{task.image}}" alt=""></div>
 											<figcaption>
-														<h3>西藏</h3>
-														<p>
-															西藏以其雄伟壮观、神奇瑰丽的自然风光闻名。它地域辽阔，地貌壮观、资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。
-														</p>						
+														<h3>{{task.name}}</h3>
+														<p>{{task.traveldesc}}</p>						
 											</figcaption>
 										</figure>
 									</div>
 								</div>
 							</div>
 							</a>
-							<a href="{:U('Home/Select/index','','')}">
-							<div class="col-md-4" style="padding:0px;">
-								<div class="boxes">
-									<div class="grid_4">
-										<figure>
-											<div><img width="100%" height="300px" src="__PUBLIC__/images/welfare/pic2.jpg" alt=""></div>
-											<figcaption>
-														<h3>香格里拉</h3>
-														<p>
-															香格里拉市历史文化悠久，自然风光绚丽，拥有普达措国家公园、独克宗古城、噶丹松赞林寺、虎跳峡等景点。
-														</p>					
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>
-							</a>
-							<a href="{:U('Home/Select/index','','')}">
-							<div class="col-md-4" style="padding:0px;">
-								<div class="boxes">
-									<div class="grid_4">
-										<figure>
-											<div><img width="100%" height="300px" src="__PUBLIC__/images/welfare/pic3.jpg" alt=""></div>
-											<figcaption>
-														<h3>泸沽湖</h3>
-														<p>
-															泸沽湖，位于四川省盐源县与云南省宁蒗县交界处，属高原断层溶蚀陷落湖泊，由一个西北东南向的断层和两个东西向的断层共同构成。
-														</p>					
-											</figcaption>
-										</figure>
-									</div>
-								</div>
-							</div>	
-							</a>
+							
 						</div>
 					</div>
 				</div>
@@ -143,145 +108,30 @@
 								<div class="col-md-3" id="msgtop">热&nbsp;门&nbsp;游&nbsp;信&nbsp;息</div>
 								<div class="col-md-9" id="msgnot"></div>
 								<div class="col-md-12" id="msgcontent">
-									<!-- <div class="row" style="padding-left:50px;"> 
-										<div class="col-md-1" id="contenttitle">全部</div>
-									</div> -->
-									<!-- <div class="row" style="padding-left:50px;">
-										<div class="col-md-1" id="contenttitle">地&nbsp;区&nbsp;:</div>
-										<div class="col-md-10">
-											<ul class="ul1">
-												<li>北京</li>
-												<li>西藏</li>
-												<li>贵州</li>
-												<li>云南</li>
-												<li>广西</li>
-												<li>山西</li>
-											</ul>
-										</div>
-									</div> -->
-									<!-- <div class="row" style="padding-left:50px;">
-										<div class="col-md-1" id="contenttitle">环&nbsp;境&nbsp;:</div>
-										<div class="col-md-10">
-											<ul class="ul1">
-												<li>城市</li>
-												<li>乡镇</li>
-												<li>村落</li>
-												<li>山区</li>
-											</ul>
-										</div>
-									</div> -->
-									<!-- <div class="row" style="padding-left:50px;">
-										<div class="col-md-1" id="contenttitle">居&nbsp;住&nbsp;条&nbsp;件&nbsp;:</div>
-										<div class="col-md-10">
-											<ul class="ul1">
-												<li>室内</li>
-												<li>室外</li>
-											</ul>
-										</div>
-									</div> -->
+									<div class="searchs col-md-12" >
+										<label for="">查询：</label>
+										<input type="text" placeholder="Search" class="form-control" ng-model="searchroute">
+									</div>
 									<div class="row">
-										<a href="{:U('Home/Select/index','','')}">
+										<a href="#" onclick="toselectpage(this)" ng-repeat="task in routes | filter:searchroute" alt="{{task.id}}">
 										<div class="col-md-6" style="padding:10px;">
 											<div class="col-md-12" id="onetravel">
 												<div class="row">
 													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav1.jpg">
+														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/routepic/{{task.image}}">
 													</div>
 													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
+														<h3>{{task.name}}</h3>
+														<p>{{task.traveldesc}}</p>
+														<p>价格：{{price}}/人</p>
 													</div>
 												</div>
 											</div>
 
 										</div>
 										</a>
-										<a href="{:U('Home/Select/index','','')}">
-										<div class="col-md-6" style="padding:10px;">
-											<div class="col-md-12" id="onetravel">
-												<div class="row">
-													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav2.jpg">
-													</div>
-													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										</a>
-										<a href="{:U('Home/Select/index','','')}">
-										<div class="col-md-6" style="padding:10px;">
-											<div class="col-md-12" id="onetravel">
-												<div class="row">
-													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav3.jpg">
-													</div>
-													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										</a>
-										<a href="{:U('Home/Select/index','','')}">
-										<div class="col-md-6" style="padding:10px;">
-											<div class="col-md-12" id="onetravel">
-												<div class="row">
-													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav4.jpg">
-													</div>
-													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										</a>
-										<a href="{:U('Home/Select/index','','')}">
-										<div class="col-md-6" style="padding:10px;">
-											<div class="col-md-12" id="onetravel">
-												<div class="row">
-													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav5.jpg">
-													</div>
-													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										</a>
-										<a href="{:U('Home/Select/index','','')}">
-										<div class="col-md-6" style="padding:10px;">
-											<div class="col-md-12" id="onetravel">
-												<div class="row">
-													<div class="col-md-7" style="padding:10px;">
-														<img class="img-rounded" width="100%" height="200px" src="__PUBLIC__/images/welfare/trav6.jpg">
-													</div>
-													<div class="col-md-5">
-														<h3>xxxx5日游</h3>
-														<p>特色：游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味，游览当地著名的xxx经典，品尝。。。。口味</p>
-														<p>价格：800/人</p>
-													</div>
-												</div>
-											</div>
-
-										</div>
-										</a>
+										
+										
 									</div>
 									<div class="row">
 										<div class="col-md-12" style="margin-bottom:20px;">
@@ -289,10 +139,6 @@
 												<ul class="pagination">
 												  <li><a href="#">&laquo;</a></li>
 												  <li class="active"><a href="#">1</a></li>
-												  <li class="disabled"><a href="#">2</a></li>
-												  <li><a href="#">3</a></li>
-												  <li><a href="#">4</a></li>
-												  <li><a href="#">5</a></li>
 												  <li><a href="#">&raquo;</a></li>
 												</ul>
 											</center>
@@ -313,6 +159,42 @@
 		</div>
 	</div>
 
+<script src="__PUBLIC__/js/angular.min.js"></script>
+	
+<script>
+	var app=angular.module("myapp",[]);
+
+	//contentcontroller
+	app.controller("contentController",['$scope','$http',function($scope,$http){
+	
+		$http.get("{:U('Home/Travel/getmost',array('kinds'=> 6))}"
+
+			).success(function(data){
+				
+
+				data=data.split('"');
+				$scope.mosts=eval(data[1]);
+				//console.log($scope.mosts)
+				
+		});
+
+		$http.get("{:U('Home/Travel/getroutes',array('kinds'=> 6))}"
+
+			).success(function(data){
+				
+
+				data=data.split('"');
+				$scope.routes=eval(data[1]);
+				console.log($scope.routes)
+				
+		});
+
+
+			
+
+	}])
+
+</script>
 
 <script type="text/javascript">
    function change(){
@@ -346,6 +228,21 @@ $(function(){
       })
   })
 })
+
+
+</script>
+
+<script>
+
+
+	function toselectpage(obj){
+		
+		var attrs=obj.getAttribute("alt");
+		
+		window.location.href="http://localhost:8081/tourist/index.php/Home/select/index/routeid/"+attrs;
+		
+		return false;
+	}
 </script>
 
 </body>

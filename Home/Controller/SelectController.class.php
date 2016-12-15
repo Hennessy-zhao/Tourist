@@ -38,16 +38,46 @@ class SelectController extends Controller {
 
 
     public function getschemsg(){
-    	
+    	$id=I('get.routeid');
+    	$where['routeid']=intval($id);
+    	$list=M('schedule')->field(true)->where($where)->select();
+
+    	$arrs="[";
+        
+         foreach($list as $list){
+        
+            $arrs=$arrs."{";
+            $arrs=$arrs."routeid : '".$list['routeid']."',";
+            $arrs=$arrs."daynumber : '".$list['daynumber']."',";
+            $arrs=$arrs."travelimg : '".$list['travelimg']."',";
+            $arrs=$arrs."traveldesc : '".$list['traveldesc']."'},";
+        //}
+        }
+
+        $arrs=$arrs."]";
+        var_dump($arrs);
     }
 
 
     public function pay(){
+        $id=I('get.routeid');
+
+        $where['id']=$id;
+        $list=M('routes')->field(true)->where($where)->select();
+
+        $travelname=$list[0]['name'];
+        $price=$list[0]['price'];
+        $this->assign('routename',$travelname);
+        $this->assign('price',$price);
+
+
         $this->display("pay");
     }
 
 
-
+    public function addorder(){
+        
+    }
    
 
 

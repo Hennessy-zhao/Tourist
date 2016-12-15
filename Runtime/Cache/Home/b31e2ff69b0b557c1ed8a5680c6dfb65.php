@@ -80,7 +80,7 @@
 						<h4>国&nbsp;内&nbsp;游</h4>
 						<p>推荐景点</p>
 						<div class="row" style="padding:0px;">
-							<a href="<?php echo U('Home/Select/index','','');?>" ng-repeat="task in mosts">
+							<a class="toselect" href="#" onclick="toselectpage(this)" ng-repeat="task in mosts" alt="{{task.id}}">
 							<div class="col-md-4" style="padding:0px;">
 								<div class="boxes">
 									<div class="grid_4">
@@ -108,10 +108,10 @@
 								<div class="col-md-12" id="msgcontent">
 									<div class="searchs col-md-12" >
 										<label for="">查询：</label>
-										<input type="text" placeholder="Search" class="form-control">
+										<input type="text" placeholder="Search" class="form-control" ng-model="searchroute">
 									</div>
 									<div class="row">
-										<a href="<?php echo U('Home/Select/index','','');?>" ng-repeat="task in routes">
+										<a href="#" onclick="toselectpage(this)" ng-repeat="task in routes | filter:searchroute" alt="{{task.id}}">
 										<div class="col-md-6" style="padding:10px;">
 											<div class="col-md-12" id="onetravel">
 												<div class="row">
@@ -226,6 +226,21 @@ $(function(){
       })
   })
 })
+
+
+</script>
+
+<script>
+
+
+	function toselectpage(obj){
+		
+		var attrs=obj.getAttribute("alt");
+		
+		window.location.href="http://localhost:8081/tourist/index.php/Home/select/index/routeid/"+attrs;
+		
+		return false;
+	}
 </script>
 
 </body>

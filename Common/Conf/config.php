@@ -23,3 +23,20 @@ return array(
 
     'URL_HTML_SUFIX'=>'HTML',
 );
+
+// create table orders(
+// id int not null primary key auto_increment,
+// routeid int not null,
+// userid int not null,
+// price int not null,
+// daytimes datetime
+// )default charset=utf8;
+
+// create table ordermemeber(
+// id int not null primary key auto_increment,
+// orderid int not null,
+// name varchar(128) not null,
+// idnumber varchar(128) not null,
+// daytimes datetime not null
+// )default charset=utf8;
+

@@ -128,7 +128,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/around','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/2.jpg);">
             <div class="routecover">
               <h1>A</h1>
@@ -142,7 +142,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/internal','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/3.jpg);">
             <div class="routecover">
               <h1>D</h1>
@@ -156,7 +156,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/harbor','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/4.jpg);">
             <div class="routecover">
               <h1>H</h1>
@@ -170,7 +170,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/island','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/5.jpg);">
             <div class="routecover">
               <h1>J</h1>
@@ -184,7 +184,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/europe','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/6.jpg);">
             <div class="routecover">
               <h1>E</h1>
@@ -198,7 +198,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/border','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/7.jpg);">
             <div class="routecover">
               <h1>B</h1>
@@ -212,7 +212,7 @@
             </div>
           </div>
           </a>
-          <a href="#">
+          <a href="<?php echo U('Home/Travel/austra','','');?>">
           <div class="oneroute" style="background-image: url(/tourist/Public/images/kinds/8.jpg);">
             <div class="routecover">
               <h1>A</h1>

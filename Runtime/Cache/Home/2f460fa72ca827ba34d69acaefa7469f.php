@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="/tourist/Public/css/travel/popular.css">
 
 </head>
-<body ng-app="myapp" style="background-image: url(/tourist/Public/images/travel/bag2.jpg);">
+<body ng-app="myapp" style="background-image: url(/tourist/Public/images/travel/bag5.jpg);">
 	<header>
 		<ul>
 			<?php if(($_SESSION['username'] == NULL)): ?><a data-toggle="modal" data-target="#myModal"><li class="navtitle">登陆</li>
@@ -77,7 +77,7 @@
 			<div class="col-md-10 col-md-offset-1" id="body">
 				<div class="column">
 					<div class="col-md-12" id="toppic">
-						<h4>周&nbsp;边&nbsp;游</h4>
+						<h4>日&nbsp;韩&nbsp;游</h4>
 						<p>推荐景点</p>
 						<div class="row" style="padding:0px;">
 							<a class="toselect" href="#" onclick="toselectpage(this)" ng-repeat="task in mosts" alt="{{task.id}}">
@@ -165,7 +165,7 @@
 	//contentcontroller
 	app.controller("contentController",['$scope','$http',function($scope,$http){
 	
-		$http.get("<?php echo U('Home/Travel/getmost',array('kinds'=> 1));?>"
+		$http.get("<?php echo U('Home/Travel/getmost',array('kinds'=> 4));?>"
 
 			).success(function(data){
 				
@@ -176,7 +176,7 @@
 				
 		});
 
-		$http.get("<?php echo U('Home/Travel/getroutes',array('kinds'=> 1));?>"
+		$http.get("<?php echo U('Home/Travel/getroutes',array('kinds'=> 4));?>"
 
 			).success(function(data){
 				

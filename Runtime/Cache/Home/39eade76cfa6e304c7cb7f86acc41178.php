@@ -12,7 +12,7 @@
 	
 	<header>
 		<ul>
-			<?php if(($_SESSION['username'] == NULL)): ?><a data-toggle="modal" data-target="#myModal"><li class="navtitle">登陆</li>
+			<?php if(($_SESSION['username'] == NULL)): ?><a data-toggle="modal" id="loginbtn" data-target="#myModal"><li class="navtitle">登陆</li>
             <?php else: ?>
                 <form action="<?php echo U('Home/Index/Sessionuse','','');?>" id="sessionuse">
                     <a onclick="change()"><li class="navtitle"><?php echo ($_SESSION['username']); ?></li></a>
@@ -21,14 +21,14 @@
 			<a href="#"><li class="navtitle">
 				旅游路线
 				<ul class="secnav">
-					<li>热门游</li>
-					<li>周边游</li>
-					<li>国内游</li>
-					<li>港澳台游</li>
-					<li>日韩游</li>
-					<li>欧美游</li>
-					<li>边境游</li>
-					<li>澳新非游</li>
+					<li><a href="<?php echo U('Home/Travel/popular','','');?>">热门游</a></li>
+					<li><a href="<?php echo U('Home/Travel/around','','');?>">周边游</a></li>
+					<li><a href="<?php echo U('Home/Travel/internal','','');?>">国内游</a></li>
+					<li><a href="<?php echo U('Home/Travel/harbor','','');?>">港澳台游</a></li>
+					<li><a href="<?php echo U('Home/Travel/island','','');?>">日韩游</a></li>
+					<li><a href="<?php echo U('Home/Travel/europe','','');?>">欧美游</a></li>
+					<li><a href="<?php echo U('Home/Travel/border','','');?>">边境游</a></li>
+					<li><a href="<?php echo U('Home/Travel/austra','','');?>">澳新非游</a></li>
 				</ul>
 			</li>
 			</a>
@@ -93,25 +93,11 @@
 				<h4>交通：{{routes.traffic}}</h4>
 				<h4>行程天数：{{routes.daynumber}}天</h4>
 				<h4>行程日期：{{routes.daytimes}}</h4>
-				<div class="oneday col-md-12">
-					<img src="/tourist/Public/images/welfare/pic1.jpg">
+				<div class="oneday col-md-12" ng-repeat="task in sches">
+					<img src="/tourist/Public/routepic/{{task.travelimg}}">
 					<div class="onedaymsg">
-						<h4>第一天</h4>
-						<p>西藏以其雄伟壮观、神奇瑰丽的自然风光闻名。它地域辽阔，地貌壮观、资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。</p>
-					</div>
-				</div>
-				<div class="oneday col-md-12">
-					<img src="/tourist/Public/images/welfare/pic1.jpg">
-					<div class="onedaymsg">
-						<h4>第二天</h4>
-						<p>西藏以其雄伟壮观、神奇瑰丽的自然风光闻名。它地域辽阔，地貌壮观、资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。</p>
-					</div>
-				</div>
-				<div class="oneday col-md-12">
-					<img src="/tourist/Public/images/welfare/pic1.jpg">
-					<div class="onedaymsg">
-						<h4>第三天</h4>
-						<p>西藏以其雄伟壮观、神奇瑰丽的自然风光闻名。它地域辽阔，地貌壮观、资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。自古以来，这片土地上的人们创造了丰富灿烂的民族文化。资源丰富。</p>
+						<h4>第{{task.daynumber}}天</h4>
+						<p>{{task.traveldesc}}</p>
 					</div>
 				</div>
 				
@@ -124,8 +110,7 @@
 					</div>
 				</div>
 
-
-				<a href="<?php echo U('Home/Select/pay','','');?>"><button class="btn btn-success">我要参加</button></a>
+				<button id="submitbtn" alt="{{routes.id}}" class="btn btn-success">我要参加</button>
 			</div>
 
 		</div>
@@ -154,13 +139,27 @@
 				 data=data.split('"');
 				 allroutes=eval(data[1]);
 				 $scope.routes=allroutes[0];
-				 
-
-				// $scope.x=1
 				
 		});
 
 		
+		$http.get("<?php echo U('Home/Select/getschemsg','','');?>",
+			{
+				params:{
+					routeid : $scope.id
+				}
+				
+			}
+
+			).success(function(data){
+
+				data=data.split('"');
+				allsches=eval(data[1]);
+				$scope.sches=allsches;
+				 
+				
+				
+		});
 			
 
 	}])
@@ -200,6 +199,22 @@ $(function(){
       })
   })
 })
+</script>
+
+<script>
+	$(function(){
+		$("#submitbtn").click(function(){
+			$alt=$(this).attr("alt");
+			$user="<?php echo ($_SESSION['username']); ?>";
+			if ($user=="") {
+				$("#loginbtn").trigger("click");
+			}
+			else{
+				window.location.href="http://localhost:8081/tourist/index.php/Home/select/pay/routeid/"+$alt;
+			}
+			
+		})
+	})
 </script>
 	
 </body>
