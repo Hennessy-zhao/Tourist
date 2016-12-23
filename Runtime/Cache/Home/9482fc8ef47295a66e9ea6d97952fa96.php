@@ -11,6 +11,7 @@
 </head>
 <body ng-app="myapp" style="background-image: url(/tourist/Public/images/travel/bag1.jpg);">
 	<header>
+		<img src="/tourist/Public/images/logo1.png" style="height: 50px;position: absolute;left:10px">
 		<ul>
 			<?php if(($_SESSION['username'] == NULL)): ?><a data-toggle="modal" data-target="#myModal"><li class="navtitle">登陆</li>
             <?php else: ?>

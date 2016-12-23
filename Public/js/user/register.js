@@ -2,8 +2,44 @@
 
 var app=angular.module("myapp",[]);
 
-app.controller("contentController",['$scope',function($scope){
+app.controller("contentController",['$scope','$http',function($scope,$http){
+	$scope.repeatusername=false;
+	$scope.repeatidnumber=false;
 
+
+	$scope.$watch('data.username',function(body){
+		if (body) {
+			$http.get("repeatname/username/"+body
+				).success(function(data){
+					
+				if (data==1) {
+					$scope.repeatusername=true;
+				}
+				else{
+					$scope.repeatusername=false;
+				}
+					
+					
+			});
+		}
+	});
+
+	$scope.$watch('data.idnumber',function(body){
+		if (body) {
+			$http.get("repeatidnumber/idnumber/"+body
+				).success(function(data){
+					
+				if (data==1) {
+					$scope.repeatidnumber=true;
+				}
+				else{
+					$scope.repeatidnumber=false;
+				}
+					
+					
+			});
+		}
+	});
 }])
 
 

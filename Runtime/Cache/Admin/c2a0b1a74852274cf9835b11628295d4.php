@@ -18,7 +18,7 @@
 </head>
 <body ng-app="myapp">
 	<header class="col-md-12">
-		<a href="<?php echo U('Admin/User/users','','');?>">
+		<a href="<?php echo U('Admin/User/index','','');?>">
 			<span class="glyphicon glyphicon-home"></span>
 			主页
 		</a>
@@ -63,7 +63,7 @@
 					<td>{{task.daytimes}}</td>
 					<td>{{task.selectnumber}}</td>
 					<td>
-						<span class="edits glyphicon glyphicon-edit"></span>
+						<span class="edits glyphicon glyphicon-edit" alt="{{task.id}}" onclick="update(this)"></span>
 						<span class="deletes glyphicon glyphicon-trash" alt="{{task.id}}" onclick="deletes(this)"></span>
 					</td>
 				</tr>
@@ -97,6 +97,14 @@
 
 		}])
 
+	</script>
+
+	<script>
+		update=function(obj){
+			$thisone=obj;
+			$alt=$thisone.getAttribute("alt");
+			window.location.href="http://localhost:8081/tourist/index.php/Admin/Route/update/routeid/"+$alt;
+		}
 	</script>
 
 	<script>

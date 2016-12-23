@@ -1,0 +1,63 @@
+*{
+	margin:0px;
+	padding: 0px;
+}
+	
+body{
+	width: 100%;
+	overflow-x: hidden;
+	margin:0px;
+	padding: 0px;
+	font-family:Arial,'Microsoft YaHei',arial;
+}
+
+header{
+	background-color: rgb(247,247,247);
+}
+
+header > a{
+	color: rgb(136,136,136);
+	font-size: 1.1em;
+	margin: 10px 0 10px 1%;
+	float: left;
+}
+
+header > a:link{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+header > a:visited{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+header > a:hover{
+	color: #333;
+	text-decoration: none;
+}
+
+header > a:active{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+section{
+	margin-bottom: 50px;
+}
+
+section .onemsg{
+	margin: 10px 0 10px 0;
+	font-size: 1.1em;
+}
+
+section label{
+	color: #333;
+	width: 10%;
+}
+
+section span{
+	color: rgb(91,192,222);
+	font-size: 0.8em;
+}
+

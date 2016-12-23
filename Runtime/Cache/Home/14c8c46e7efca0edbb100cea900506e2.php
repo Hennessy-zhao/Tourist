@@ -21,14 +21,14 @@
 			<a href="#"><li class="navtitle">
 				旅游路线
 				<ul class="secnav">
-					<li>热门游</li>
-					<li>周边游</li>
-					<li>国内游</li>
-					<li>港澳台游</li>
-					<li>日韩游</li>
-					<li>欧美游</li>
-					<li>边境游</li>
-					<li>澳新非游</li>
+					<li><a href="<?php echo U('Home/Travel/popular','','');?>">热门游</a></li>
+					<li><a href="<?php echo U('Home/Travel/around','','');?>">周边游</a></li>
+					<li><a href="<?php echo U('Home/Travel/internal','','');?>">国内游</a></li>
+					<li><a href="<?php echo U('Home/Travel/harbor','','');?>">港澳台游</a></li>
+					<li><a href="<?php echo U('Home/Travel/island','','');?>">日韩游</a></li>
+					<li><a href="<?php echo U('Home/Travel/europe','','');?>">欧美游</a></li>
+					<li><a href="<?php echo U('Home/Travel/border','','');?>">边境游</a></li>
+					<li><a href="<?php echo U('Home/Travel/austra','','');?>">澳新非游</a></li>
 				</ul>
 			</li>
 			</a>
@@ -73,7 +73,7 @@
 
 
 	<section id="container" alt="<?php echo ($price); ?>" class="col-md-10 col-md-offset-1">
-		<form action="<?php echo U('Home/Select/addorder','','');?>" method="post">
+		<form action="<?php echo U('Home/Select/addorder','','');?>" method="post" onsubmit="alert('您已成功报名该旅游项目，相关资料会在24小时内发送到您的邮箱里')">
 		<h3>支付信息</h3>
 		<div class="onedata col-md-12">
 			<label class="col-md-3">您的旅游项目是：</label>
@@ -81,7 +81,7 @@
 		</div>
 		<div class="onedata col-md-12">
 			<label class="col-md-3">请选择报名人数：</label>
-			<input type="number" style="width: 10%;" id="membernum" class="form-control" onchange="addmembers()" required>
+			<input type="number" style="width: 10%;" id="membernum" name="memcount" class="form-control" onchange="addmembers()" required>
 		</div>
 		<div class="onedata col-md-12" id="memberlist">
 			
@@ -95,13 +95,11 @@
 				<input type="text" class="form-control">
 			</div> -->
 
-			
-
-			
-			
 		</div>
 		
 		<p class="pay">支付金额：0￥</p>
+		<input type="hidden" name="price" value="<?php echo ($price); ?>">
+		<input type="hidden" name="routeid" value="<?php echo ($routeid); ?>"> 
 		<button class="btn btn-success" type="submit">确认报名</button>
 
 		</form>

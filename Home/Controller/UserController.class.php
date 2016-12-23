@@ -37,20 +37,66 @@ class UserController extends Controller {
     }
 
 
-  //   public function repeatname(){
-  //   	$username=I('post.user');	
+    public function suggest(){
+    	$name=I('post.name');
+    	$phone=I('post.phone');
+    	$email=I('post.email');
+    	$message=I('post.message');
 
-		// $where['name']=$username;
-		// $res=M('user')->where($where)->select();
+    	$data=array(
+    		'name' => $name,
+    		'phone' => $phone,
+    		'email' => $email,
+    		'message' => $message,
+    		'daytimes' => date('y-m-d H:i:s',time())
+    		);
+    	$result=M('suggest')->add($data);
 
-		// if ($res) {
-		// 	echo 2;
-		// }
-		// else
-		// {
-		// 	echo 1;
-		// }
-   // }
+        if ($name!='') {
+            $where['truename']=$name;
+            $advisecount=M('user')->where($where)->getField('advisecount');
+            $newadvisecount=intval($advisecount)+1;
+            $data1['advisecount'] = $newadvisecount;
+            $result1=M('user')->where($where)->save($data1);
+        }
+        
+
+    	if ($result) {
+    		echo 1;
+    	}
+    	else{
+    		echo 2;
+    	}
+    }
+
+
+    public function repeatname(){
+    	$username=I('get.username');	
+
+		$where['username']=$username;
+		$res=M('user')->where($where)->select();
+
+		if ($res) {
+            echo 1;
+        }
+        else{
+            echo 2;
+        }
+   }
+
+   public function repeatidnumber(){
+        $idnumber=I('get.idnumber');    
+
+        $where['idnumber']=$idnumber;
+        $res=M('user')->where($where)->select();
+
+        if ($res) {
+            echo 1;
+        }
+        else{
+            echo 2;
+        }
+   }
 
 }
 

@@ -1,0 +1,156 @@
+*{
+	margin:0px;
+	padding: 0px;
+}
+	
+body{
+	width: 100%;
+	overflow-x: hidden;
+	margin:0px;
+	padding: 0px;
+	font-family:Arial,'Microsoft YaHei',arial;
+}
+
+header{
+	background-color: rgb(247,247,247);
+}
+
+header > a{
+	color: rgb(136,136,136);
+	font-size: 1.1em;
+	margin: 10px 0 10px 1%;
+	float: left;
+}
+
+header > a:link{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+header > a:visited{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+header > a:hover{
+	color: #333;
+	text-decoration: none;
+}
+
+header > a:active{
+	color: rgb(136,136,136);
+	text-decoration: none;
+}
+
+a.addbtn{
+	margin: 10px 0 10px 10px;
+}
+
+
+#numbers{
+	height:120px;
+	background-color: rgb(226,90,89);
+	margin: 20px 0 0 3%;
+	text-align: center;
+	color: #ffffff;
+	font-size: 2em;
+	border-radius: 8px;
+}
+
+#numbers > img{
+	width: 30%;
+	margin: 20px 0 0 0;
+}
+
+#numbers >p{
+	font-size: 0.6em;
+	text-align: left;
+	margin: 10px 0 0 0;
+}
+
+#routes{
+	margin: 30px 0 0 3%;
+	border: 2px solid rgb(226,90,89);
+	padding: 0px !important; 
+}
+
+#titles{
+	background-color: rgb(226,90,89);
+	padding: 0px;
+	
+}
+
+#titles > span{
+	color: #ffffff;
+	padding: 6px 4% 12px 2%;
+	font-size: 1.8em;
+	float: left;
+}
+
+#titles >p{
+	color: #ffffff;
+	font-size: 1.2em;
+	padding: 8px 4% 0px 0;
+	float: left;
+}
+
+#routes aside{
+	margin: 10px 0 0 0 ;
+}
+
+#routes aside >span{
+	color: #333;
+	font-size: 1.2em;
+	float: left;
+	margin: 2px 2% 0 0;
+}
+
+#routes aside > input{
+	width: 50%;
+	float: left;
+}
+
+table.lists{
+	width: 95%;
+	float: left;
+	margin: 30px 0 50px 2%;
+	border:1px solid rgb(230,230,230);
+}
+
+table.lists th{
+	text-align: center;
+	border-right: 1px solid rgb(230,230,230);
+	font-size: 1.1em;
+	color: #333;
+	font-family:'Microsoft YaHei' !important;
+	font-weight: normal;
+}
+
+table.lists td{
+	border-right: 1px solid rgb(230,230,230);
+	color: rgb(80,80,80);
+}
+
+table.lists td span.edits{
+	width: 30%;
+	color: #ffffff;
+	background-color: rgb(91,192,222);
+	padding: 8px 10px 8px 10px;
+	text-align: center;
+	font-size: 1.2em;
+	border-radius: 4px;
+	margin: 0 2% 0 5%;
+	cursor: pointer;
+}
+
+table.lists td span.deletes{
+	width: 30%;
+	color: #ffffff;
+	background-color: rgb(226,90,89);
+	padding: 8px 10px 8px 10px;
+	text-align: center;
+	font-size: 1.2em;
+	border-radius: 4px;
+	margin: 0 2% 0 5%;
+	cursor: pointer;
+}

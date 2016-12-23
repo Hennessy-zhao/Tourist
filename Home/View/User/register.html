@@ -12,14 +12,14 @@
 <body ng-app="myapp">
 	<div class="column">
 		<div class="col-md-8 col-md-offset-2" id="logo">
-			<img src="__PUBLIC__/images/biglogo.jpg" id="biglogo" >
+			<img src="__PUBLIC__/images/logo.png" id="biglogo" >
 		</div>
 		<div class="col-md-8 col-md-offset-2" style="padding-left:30px;padding-right:30px;">
 			<div class="row">
 				<div class="col-md-12" id="content" ng-controller="contentController">
 					<div class="column">
 						<div class="col-md-12" id="title">
-							<p>欢迎注册幻游网会员，请填写以下内容，其中标注*为必填。<span style="float:right;"><a href="{:U('Home/Index/index','','')}" class="a1">登陆</a></span></p>
+							<p>欢迎注册畅游网会员，请填写以下内容，其中标注*为必填。<span style="float:right;"><a href="{:U('Home/Index/index','','')}" class="a1">登陆</a></span></p>
 						</div>
 						<div class="col-md-12" id="message">
 							<form id="form1" action="{:U('Home/User/register','','')}" name="registerForm" method="post">
@@ -35,6 +35,7 @@
 									</div>
 									<div class="col-md-4" id="form-right">
 										<p class="errors" ng-show="registerForm.username.$error.minlength||registerForm.username.$error.maxlength">用户名长度在4~16个字范围内</p>
+										<p class="errors" ng-show="repeatusername">此用户名已被使用，请选择其他用户名</p>
 									</div>
 								</div>
 								<div class="row">
@@ -114,6 +115,7 @@
 									</div>
 									<div class="col-md-4" id="form-right">
 										<p class="errors" ng-show="registerForm.idnumber.$dirty&&registerForm.idnumber.$invalid">身份证号格式错误</p>
+										<p class="errors" ng-show="repeatidnumber&&registerForm.idnumber.$valid">该身份证已有人使用</p>
 									</div>
 								</div>
 								<div class="row">
@@ -162,7 +164,7 @@
 			</div>
 		</div>
 		<footer class="col-md-12">
-			<p> 版权所有：幻游公司&nbsp;&nbsp;&nbsp;2016-2020</p>
+			<p> 版权所有：畅游公司&nbsp;&nbsp;&nbsp;2016-2020</p>
 			<p> 联系电话：000-000-000&nbsp;&nbsp;&nbsp;email:xxxxxxxxxx@qq.com</p>
 		</footer>
 	</div>

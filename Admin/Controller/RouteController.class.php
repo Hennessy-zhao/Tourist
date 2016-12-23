@@ -130,5 +130,71 @@ class RouteController extends Controller {
         
 
     }
+
+
+
+    public function update(){
+        $routeid=I('get.routeid');
+        $where['id']=$routeid;
+        $list=M('routes')->where($where)->select();
+        $this->assign("data",$list[0]);
+        $this->display("update");
+
+    }
+
+    public function infoupdate(){
+        $upload = new \Think\Upload();
+        $upload->maxSize   =     3145728 ;
+        $upload->rootPath  =     './Public/test/'; 
+        $upload->savePath  =     ''; 
+        $upload->saveName  =        array('uniqid',''); 
+        $upload->uploadReplace=true;    
+        $upload->autoSub=false;
+        $info   =   $upload->upload();
+
+        $count=count($info);
+
+        $id=I('post.routeid');
+               
+        if($count==2) {
+            $data['image'] = $info[0]["savename"];
+            $data['liveimg'] = $info[1]["savename"];
+            $where['id']=$id;
+            $result=M('routes')->where($where)->save($data);
+        }else if ($count==1) {
+            if (I('post.images')!='') {
+                $data['image'] = $info[0]["savename"];
+                echo $data['image'];
+            }
+            else{
+                $data['liveimg'] = $info[1]["savename"];
+                echo $data['liveimg']; 
+            }
+
+            $where['id']=$id;
+            $result=M('routes')->where($where)->save($data);
+        }
+
+        $where['id']=$id;
+        $datas['name']=I('post.name');
+        $datas['traveldesc']=I('post.traveldesc');
+        $datas['price']=I('post.price');
+        $datas['daynumber']=I('post.daynumber');
+        $datas['traffic']=I('post.traffic');
+        $datas['livedesc']=I('post.livedesc');
+        $datas['fooddesc']=I('post.fooddesc');
+        $datas['daytimes']=I('post.daytimes');
+        $results=M('routes')->where($where)->save($datas);
+
+        if ($results) {
+            $this->redirect("Route/index");
+        }
+        else{
+            echo "系统故障";
+        }
+
+            
+        
+    }
 }
 

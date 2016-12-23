@@ -13,15 +13,9 @@
     
     <link href="/tourist/Public/css/jquery.bxslider.css" rel="stylesheet" />
     <link rel="stylesheet" href="/tourist/Public/css/nivo-slider.css">
-    <link href='http://fonts.useso.com/css?family=Raleway:400,100,600' rel='stylesheet' type='text/css'>
+    
     <script src="/tourist/Public/js/modernizr.custom.js"></script>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
   </head>
   <body>
 <div id="backcolor" style="background-color: rgb(235,84,37);">
@@ -37,7 +31,7 @@
         <div class="row">
           <div class="col-sm-4 col-md-4" style="padding:0px;">
             <div class="logo">
-              <!-- <img class="imglogo" src="/tourist/Public/images/logo.jpg" height="50"> -->
+              <img class="imglogo" src="/tourist/Public/images/logo1.png" height="50">
             </div>
           </div>
           <div class="col-sm-8 col-md-8">
@@ -103,10 +97,10 @@
     <div id="templatemo_services" class="section1">
       <fieldset>
         <legend>关于我们 &nbsp; | &nbsp; About us</legend>
-        <p>xxxx公司成立于2016年11月份。</p>
-        <p>xxx公司旨在为广大想要旅游的用户提供一个选择自己想要游玩地点的平台。其核心创始人为江苏师范大学智慧与教育学院14级五位学生：李茜、任驰、许微微、张雨秋、赵益石（按姓名首字母排序）。</p>
+        <p>畅游公司成立于2016年11月份。</p>
+        <p>畅游公司旨在为广大想要旅游的用户提供一个选择自己想要游玩地点的平台。其核心创始人为江苏师范大学智慧与教育学院14级五位学生：李茜、任驰、许微微、张雨秋、赵益石（按姓名首字母排序）。</p>
         <p>随着互联网普及到千家万户，越来越多的公司有了自己的网站和网上服务点，越来越多的人选择在网上去获取自己想要的东西或者处理事情。</p>
-        <p>在xxxx旅游平台上，你可以选择自己想要的路线，并且进行网上付款和网上签约，不需要家-旅行社两点一线的来回跑，来回确认信息。如果您对我们的服务有什么不满，可以在下面投诉部分进行投诉或者一些建议，我们会在最短时间内进行处理。</p>
+        <p>在畅游旅游平台上，你可以选择自己想要的路线，并且进行网上付款和网上签约，不需要家-旅行社两点一线的来回跑，来回确认信息。如果您对我们的服务有什么不满，可以在下面投诉部分进行投诉或者一些建议，我们会在最短时间内进行处理。</p>
       </fieldset>
     </div> <!-- e/o section1 -->
 </div>
@@ -249,24 +243,25 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3">
-            <form role="form">
+            <form role="form" id="advise" name="advise">
               <div class="form-group">
-                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="请输入您的姓名（必填）" maxlength="30">
+                <input name="fullname" type="text" class="form-control" id="fullname" placeholder="请输入您的姓名" value="<?php echo ($username); ?>" maxlength="30">
               </div>
               <div class="form-group">
-                <input name="phone" type="text" class="form-control" id="fullname" placeholder="请输入您的联系电话" maxlength="30">
+                <input name="phone" type="text" class="form-control" id="advisephone" placeholder="请输入您的联系电话" value="<?php echo ($phone); ?>" maxlength="30">
               </div>
               <div class="form-group">
-                <input name="email" type="text" class="form-control" id="email" placeholder="请输入您的电子邮箱（必填）" maxlength="30">
+                <input name="email" type="text" class="form-control" id="adviseemail" placeholder="请输入您的电子邮箱（必填）" value="<?php echo ($email); ?>" maxlength="30" required>
               </div>
-              <div><button type="button" class="btn btn-success" style="width:100px;">提交</button></div>
-            </form>
+              <div><button type="submit" class="btn btn-success" style="width:100px;">提交</button></div>
+            
           </div>
           <div class="col-md-6">
             <div class="txtarea">
-              <textarea name="message" rows="10" class="form-control" id="message"></textarea>
+              <textarea name="message" rows="10" class="form-control" id="message" required></textarea>
             </div>
           </div>
+          </form>
           <div class="col-md-3">
             <div class="addr" style="font-family:Microsoft YaHei;font-size:1em;color:rgb(119,119,119);font-weight:bold;">
               <p>联系方式：</p>
@@ -287,15 +282,14 @@
       </div>
 
       <div class="bfWrap text-center">
-        <div class="templatemo_footer">版权信息 © 2016 幻游网 </div>
+        <div class="templatemo_footer">版权信息 © 2016 畅游网 </div>
       </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
     <script src="/tourist/Public/js/jquery-1.10.2.min.js"></script>
     <script src="/tourist/Public/js/bootstrap.min.js"></script>
-    <script src="/tourist/Public/js/jquery.cycle2.min.js"></script>
-    <script src="/tourist/Public/js/jquery.cycle2.carousel.min.js"></script>
+   
     <script src="/tourist/Public/js/jquery.nivo.slider.pack.js"></script>
     <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
     <script src="/tourist/Public/js/jquery.cookie.js"></script>
@@ -483,6 +477,36 @@ $(function(){
       })
   })
 })
+</script>
+
+
+<script>
+  $(function(){
+    $("#advise").submit(function(){
+      var name=$("#fullname").val();
+      var phone=$("#advisephone").val();
+      var email=$("#adviseemail").val();
+      var message=$("#message").val();
+
+      $.post("<?php echo U('Home/User/suggest','','');?>",{
+          name : name,
+          phone : phone,
+          email : email,
+          message : message
+      },function(data){
+        if (data==1) {
+          alert("您的建议/投诉，我们已接受，工作人员会在审阅后回复邮件。");
+        $("#message").val("");
+          
+        }
+        else{
+          alert("服务器忙,请稍后再试！");
+        }
+      })
+
+      return false;
+    })
+  })
 </script>
 
 </html>

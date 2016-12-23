@@ -76,7 +76,7 @@ class TravelController extends Controller {
     public function getroutes(){
         $kinds=I('get.kinds');
         if ($kinds==0) {
-            $list=M('routes')->field(true)->select();
+            $list=M('routes')->field(true)->order('selectnumber desc')->select();
         }
         else{
            $where['kinds']=$kinds;

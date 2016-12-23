@@ -67,6 +67,8 @@ class SelectController extends Controller {
 
         $travelname=$list[0]['name'];
         $price=$list[0]['price'];
+
+        $this->assign('routeid',$id);
         $this->assign('routename',$travelname);
         $this->assign('price',$price);
 
@@ -76,6 +78,54 @@ class SelectController extends Controller {
 
 
     public function addorder(){
+        $memcount=I('post.memcount');
+        $price=I('post.price');
+        $routeid=I('post.routeid');
+
+
+        //添加新的订单
+        $where['username']=$_SESSION['username'];
+        $userid=M('user')->where($where)->getField('id');
+        $truename=M('user')->where($where)->getField('truename');
+        $ordercount=M('user')->where($where)->getField('ordercount');
+
+        $data=array(
+            'routeid' => $routeid,
+            'userid' => $userid,
+            'username' => $truename,
+            'price' => $price*$memcount,
+            'memcount' => $memcount,
+            'daytimes' => date('y-m-d H:i:s',time())
+            );
+
+        $result=M('orders')->add($data);
+
+        //在旅游路线中数量selectnumber数据
+        $where1['id']=$routeid;
+        $numbers=M('routes')->where($where1)->getField('selectnumber');
+        $selectnumber=intval($numbers)+1;
+        $data1['selectnumber'] = $selectnumber;
+        $result1=M('routes')->where($where1)->save($data1);
+
+        //在user表的ordercount加一个
+        $newordercount=intval($ordercount)+1;
+        $newdata['ordercount']=$newordercount;
+        $where2['id']=$userid;
+        $result2=M('user')->where($where2)->save($newdata);
+
+        //向数据表ordermemeber里面添加数据
+        for ($i=1; $i <= $memcount; $i++) { 
+            $data2=array(
+                'orderid' => $result,
+                'name' => I('post.membername_'.$i),
+                'idnumber' => I('post.memberid_'.$i),
+                'routeid' => $routeid,
+                'daytimes' => date('y-m-d H:i:s',time())
+            );
+            $results=M('ordermemeber')->add($data2);
+        }
+
+       $this->redirect("Home/select/index/routeid/".$routeid);
         
     }
    

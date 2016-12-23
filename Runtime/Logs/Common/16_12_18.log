@@ -1,0 +1,12 @@
+[ 2016-12-18T19:49:45+08:00 ] ::1 /tourist/index.php/select/index/routeid.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000649s ]
+ERR: 无法加载模块:Select
+
+[ 2016-12-18T19:50:23+08:00 ] ::1 /tourist/index.php/select/index/routeid.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000776s ]
+ERR: 无法加载模块:Select
+

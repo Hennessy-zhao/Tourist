@@ -32,11 +32,12 @@ return array(
 // daytimes datetime
 // )default charset=utf8;
 
-// create table ordermemeber(
+// create table suggest(
 // id int not null primary key auto_increment,
-// orderid int not null,
-// name varchar(128) not null,
-// idnumber varchar(128) not null,
+// name varchar(128),
+// phone varchar(128),
+// email varchar(128) not null,
+// message text not null,
 // daytimes datetime not null
 // )default charset=utf8;
 

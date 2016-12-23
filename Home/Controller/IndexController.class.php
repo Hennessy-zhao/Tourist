@@ -3,6 +3,23 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends Controller {
     public function index(){
+
+    	$username='';
+    	$phone='';
+    	$email='';
+
+    	if ($_SESSION['username']!="") {
+    		$where['username']=$_SESSION['username'];
+    		$list=M('user')->where($where)->select();
+    		$username=$list[0]['truename'];
+    		$phone=$list[0]['phone'];
+    		$email=$list[0]['email'];
+    	}
+
+    	$this->assign("username",$username);
+    	$this->assign("phone",$phone);
+    	$this->assign("email",$email);
+
         $this->display("home");
     }
 
