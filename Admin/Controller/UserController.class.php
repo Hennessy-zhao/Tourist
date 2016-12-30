@@ -3,6 +3,9 @@ namespace Admin\Controller;
 use Think\Controller;
 class UserController extends Controller {
     public function index(){
+        $count=M('user')->field(true)->count();
+
+        $this->assign('count',$count);
         $this->display("index");
     }
  
@@ -14,8 +17,8 @@ class UserController extends Controller {
         
             # code...
             $arrs=$arrs."{";
-            $arrs=$arrs."id : '".$list['id']."',";
-            $arrs=$arrs."truename : '".$list['truename']."',";
+            $arrs=$arrs."id : ".$list['id'].",";
+            $arrs=$arrs."username : '".$list['username']."',";
             $arrs=$arrs."email : '".$list['email']."',";
             $arrs=$arrs."phone : '".$list['phone']."',";
             $arrs=$arrs."ordercount : '".$list['ordercount']."',";
@@ -50,6 +53,17 @@ class UserController extends Controller {
 
     	$this->display("look");
 
+    }
+
+    public function doemail(){
+        $email=I('post.email');
+        $message=I('post.messages');
+        if(sendMail($email,'你好!亲爱的畅游网用户',$message)){
+            echo 1;
+        }
+        else{
+            echo 2;
+        }
     }
   
 

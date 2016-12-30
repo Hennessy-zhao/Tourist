@@ -126,6 +126,15 @@ table.lists th{
 	font-weight: normal;
 }
 
+table.lists th.orderselect{
+	color: red;
+}
+
+table.lists th  span.order{
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
 table.lists td{
 	border-right: 1px solid rgb(230,230,230);
 	color: rgb(80,80,80);

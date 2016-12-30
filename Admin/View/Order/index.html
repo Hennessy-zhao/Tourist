@@ -43,15 +43,27 @@
 			<table class="table table-striped lists">
 				<thead>
 					<tr>
-						<th width="25%">路线名称</th>
-						<th width="25%">路线简介</th>
-						<th width="20%">旅游时间</th>
-						<th width="15%">订单个数</th>
+						<th width="8%" ng-class="{orderselect:orderType=='name'}">
+							编号 <span ng-click="changeOrder('id')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="22%" ng-class="{orderselect:orderType=='name'}">
+							路线名称 <span ng-click="changeOrder('name')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="22%">
+							路线简介
+						</th>
+						<th width="20%" ng-class="{orderselect:orderType=='daytimes'}">
+							旅游时间 <span ng-click="changeOrder('daytimes')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="15%" ng-class="{orderselect:orderType=='selectnumber'}">
+							订单个数 <span ng-click="changeOrder('selectnumber')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="task in routes | filter:search">
+					<tr ng-repeat="task in routes | filter:search | orderBy:order+orderType">
+						<td>{{task.id}}</td>
 						<td>{{task.name}}</td>
 						<td>{{task.traveldesc}}</td>
 						<td>{{task.daytimes}}</td>
@@ -88,6 +100,17 @@
 			});
 
 
+			$scope.orderType="id";
+			$scope.order="";
+
+			$scope.changeOrder=function(type){
+				$scope.orderType=type;
+				if ($scope.order=='') {
+					$scope.order='-';
+				}else{
+					$scope.order='';
+				}
+			}
 			
 
 		}])
@@ -99,7 +122,7 @@
 			$thisone=obj;
 			$alt=$thisone.getAttribute("alt");
 
-			window.location.href="http://localhost:8081/tourist/index.php/Admin/order/lookorder/routeid/"+$alt;
+			window.location.href="lookorder/routeid/"+$alt;
 		}
 	</script>
 	

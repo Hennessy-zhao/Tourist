@@ -16,6 +16,8 @@ class IndexController extends Controller {
     		$email=$list[0]['email'];
     	}
 
+        
+
     	$this->assign("username",$username);
     	$this->assign("phone",$phone);
     	$this->assign("email",$email);
@@ -29,17 +31,45 @@ class IndexController extends Controller {
     	$username=I('post.user');	
 		$password=I('post.pasd');
 
-		$where['name']=$username;
-		$pasd=M('user')->where($where)->getField('password');
+        if(strlen($username) > 6 && preg_match("/^[\w\-\.]+@[\w\-]+(\.\w+)+$/",$username)){
+            $where2['email']=$username;
+            $list2=M('user')->where($where2)->select();
 
-		if (md5($password)==$pasd) {
-			$_SESSION['username']=$username;
-			echo 1;
+            if ($list2) {
+                $sessionname=$list2[0]['username'];
+                $pasd=$list2[0]['password'];
+                if (md5($password)==$pasd){
+                     $_SESSION['username']=$sessionname;
+                     echo 1;
+                }
+                else{
+                    echo 0;
+                }
+            }
+            else{
+                echo 2;
+            }
+        }
+        else{
+            $where['username']=$username;
+            $list=M('user')->where($where)->select();
+            if ($list) {
+                $pasd=$list[0]['password'];
+                if (md5($password)==$pasd) {
+                    $_SESSION['username']=$username;
+                    echo 1;
+                }
+                else{
+                    echo 0;
+                }
+            }
+            else{
+                echo 2;
+            }
+
 		}
-		else
-		{
-			echo 2;
-		}
+       
+
     }
 
 

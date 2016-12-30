@@ -11,7 +11,7 @@
     <link href="__PUBLIC__/css/templatemo_style.css" rel="stylesheet">
 
     
-    <link href="__PUBLIC__/css/jquery.bxslider.css" rel="stylesheet" />
+    
     <link rel="stylesheet" href="__PUBLIC__/css/nivo-slider.css">
     
     <script src="__PUBLIC__/js/modernizr.custom.js"></script>
@@ -73,7 +73,7 @@
                        <div class="modal-body">
 
                           <div class="form-group">
-                            <input id="user" name="user"  class="form-control" type="text" placeholder="请输入用户名"> 
+                            <input id="user" name="user"  class="form-control" type="text" placeholder="请输入用户名/邮箱"> 
                           </div>
                           <div class="form-group">
                             <input id="pasd" name="pasd"  class="form-control" type="password" placeholder="请输入密码"> 
@@ -85,6 +85,7 @@
                              注册
                           </a>
                           <input type="button" id="login"  class="btn btn-primary" value="登陆">
+                          <a href="#" id="lostpasd" style="width: 100%;float: left;margin-top: 10px;">忘记密码</a>
                        </div>
                       </form>
                   </div><!-- /.modal-content -->
@@ -293,7 +294,9 @@
     <script src="__PUBLIC__/js/bootstrap.min.js"></script>
    
     <script src="__PUBLIC__/js/jquery.nivo.slider.pack.js"></script>
-    <script>$.fn.cycle.defaults.autoSelector = '.slideshow';</script>
+    <script>
+      // $.fn.cycle.defaults.autoSelector = '.slideshow';
+      </script>
     <script src="__PUBLIC__/js/jquery.cookie.js"></script>
     <script type="text/javascript">
       $(function(){
@@ -469,8 +472,11 @@ $(function(){
            window.location.reload(true);
             
         }
-        else if(data==2){
-          alert("用户名或密码错误");
+        else if(data==0){
+          alert("用户名(邮箱)或密码错误");
+        }
+        else if (data==2) {
+          alert("用户名(邮箱)不存在");
         }
         else
         {
@@ -510,5 +516,36 @@ $(function(){
     })
   })
 </script>
+
+
+<script type="text/javascript">
+  $(function(){
+    $("#lostpasd").click(function(){
+      if ($("#user").val()=='') {
+        alert("请输入用户名后点击忘记密码");
+      }
+      else{
+        $username=$("#user").val();
+        $.post("{:U('Home/User/identity','','')}",{
+            username : $username
+        },function(data){
+          if (data==1) {
+            alert("我们已向您的邮箱发送邮件，请根据邮件提示修改密码");
+            
+          }
+          else if (data==2) {
+            alert("用户名不存在");
+          }
+          else{
+            console.log(data)
+          }
+        })
+      }
+      return false;
+    })
+  })
+</script>
+
+
 
 </html>

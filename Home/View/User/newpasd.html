@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<link href="__PUBLIC__/css/bootstrap.min.css" rel="stylesheet">
+	<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <script src="__PUBLIC__/js/bootstrap.min.js"></script>
+    <style>
+    	body{
+    		padding:0px;
+    		font-family: 微软雅黑;
+    	}
+    	header{
+    		text-align: center;
+    	}
+    	img{
+			height:100px;
+    		margin:30px 35% 0 0;
+
+    	}
+    	section{
+    		margin:10px 0 0 0;
+    		border:1px dashed rgb(100,100,100);
+    		border-radius: 8px;
+    		padding-top: 30px;
+    		padding-bottom: 30px;
+    	}
+
+    	.oneinput{
+    		margin-top: 20px;
+    	}
+		
+		label{
+			font-size:1.2em;
+			text-align: right;
+		}
+    	input{
+    		width: 40% !important;
+    		float: left;
+    		margin-left: 2%;
+    	}
+
+    	button{
+    		margin-top: 30px;
+    	}
+
+    	p.error{
+    		color: red;
+    		float: left;
+    		margin-left: 2%;
+    		margin-top: 5px;
+    	}
+    </style>
+</head>
+<body ng-app="myapp" ng-controller="contentController">
+	<header class="col-md-12">
+		<img src="__PUBLIC__/images/logo.png" alt="">
+	</header>
+	<section class="col-md-6 col-md-offset-3">
+		<h4>尊敬的用户{$username}您好,请您修改您的密码：</h4>
+		<form id="updateForm" action="#" name="updateForm" method="post" alt="{$username}">
+		<div class="col-md-12 oneinput">
+			<label class="col-md-3">密码&nbsp;:</label>
+			<input type="password" class="form-control" placeholder="请输入密码" ng-minlength="6" ng-maxlength="20" name="password" ng-model="data.password" required id="password">
+			<p class="error" ng-show="updateForm.password.$error.minlength||updateForm.password.$error.maxlength">密码长度在6~20个字范围内</p>
+
+		</div>
+		<div class="col-md-12 oneinput">
+			<label class="col-md-3">重复密码&nbsp;:</label>
+			<input type="password" class="form-control" placeholder="请再次输入密码" name="repeatpassword" ng-model="data.repeatpassword" required>
+			<p class="error" ng-show="updateForm.repeatpassword.$dirty&&data.password!==data.repeatpassword">两次密码输入不一致</p>
+		</div>
+		<center><button type="submit" class="btn btn-success" ng-disabled="updateForm.$invalid||data.password!==data.repeatpassword">确认修改</button></center>
+		</form>
+	</section>	
+
+
+	<script src="__PUBLIC__/js/angular.min.js"></script>
+
+	<script>
+		var app=angular.module("myapp",[]);
+
+		app.controller("contentController",['$scope',function($scope){
+			$scope.password="";
+			$scope.repeatpassword="";
+
+		}])
+	</script>
+
+	<script>
+		$("#updateForm").submit(function(){
+			$password=$("#password").val();
+			$username=$("#updateForm").attr("alt");
+			$.post("{:U('Home/User/updatepasd','','')}",{
+				username : $username,
+	          	password : $password
+	      	},function(data){
+	        	if (data==1) {
+	           		alert("用户名，密码修改成功，您现在可以登陆了");
+	           		history.go(0);
+	            }
+	        	else
+	        	{
+	          		alert("系统异常，请稍后再试");
+	        	}
+	      })
+
+			return false;
+		})
+	</script>
+</body>	
+</html>

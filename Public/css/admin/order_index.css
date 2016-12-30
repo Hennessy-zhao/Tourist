@@ -126,31 +126,40 @@ table.lists th{
 	font-weight: normal;
 }
 
+table.lists th.orderselect{
+	color: red;
+}
+
+table.lists th  span.order{
+	font-size: 0.8em;
+	cursor: pointer;
+}
+
 table.lists td{
 	border-right: 1px solid rgb(230,230,230);
 	color: rgb(80,80,80);
 }
 
 table.lists td span.edits{
-	width: 30%;
+	width: 40%;
 	color: #ffffff;
 	background-color: rgb(91,192,222);
-	padding: 8px 10px 8px 10px;
+	padding: 8px 5px 8px 5px;
 	text-align: center;
 	font-size: 1.2em;
 	border-radius: 4px;
-	margin: 0 2% 0 5%;
+	margin: 0 2% 0 2%;
 	cursor: pointer;
 }
 
 table.lists td span.deletes{
-	width: 30%;
+	width: 40%;
 	color: #ffffff;
 	background-color: rgb(226,90,89);
-	padding: 8px 10px 8px 10px;
+	padding: 8px 5px 8px 5px;
 	text-align: center;
 	font-size: 1.2em;
 	border-radius: 4px;
-	margin: 0 2% 0 5%;
+	margin: 0 2% 0 2%;
 	cursor: pointer;
 }

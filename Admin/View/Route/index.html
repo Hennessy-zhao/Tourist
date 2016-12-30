@@ -47,16 +47,28 @@
 		<table class="table table-striped lists">
 			<thead>
 				<tr>
-					<th width="18%">路线名称</th>
-					<th width="30%">路线简介</th>
-					<th width="10%">旅游天数</th>
-					<th width="15%">旅游时间</th>
-					<th width="10%">订单个数</th>
+					<th width="8%" ng-class="{orderselect:orderType=='id'}">
+						编号 <span ng-click="changeOrder('id')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+					</th>
+					<th width="18%" ng-class="{orderselect:orderType=='name'}">
+						路线名称 <span ng-click="changeOrder('name')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+					</th>
+					<th width="25%">路线简介</th>
+					<th width="10%" ng-class="{orderselect:orderType=='daynumber'}">
+						旅游天数 <span ng-click="changeOrder('daynumber')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+					</th>
+					<th width="14%" ng-class="{orderselect:orderType=='daytimes'}">
+						旅游时间 <span ng-click="changeOrder('daytimes')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+					</th>
+					<th width="12%" ng-class="{orderselect:orderType=='selectnumber'}">
+						订单个数 <span ng-click="changeOrder('selectnumber')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+					</th>
 					<th>操作</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr ng-repeat="task in knows | filter:search">
+				<tr ng-repeat="task in knows | filter:search | orderBy:order+orderType">
+					<td>{{task.id}}</td>
 					<td>{{task.name}}</td>
 					<td>{{task.traveldesc}}</td>
 					<td>{{task.daynumber}}</td>
@@ -92,7 +104,17 @@
 				
 			});
 
+			$scope.orderType="id";
+			$scope.order="";
 
+			$scope.changeOrder=function(type){
+				$scope.orderType=type;
+				if ($scope.order=='') {
+					$scope.order='-';
+				}else{
+					$scope.order='';
+				}
+			}
 			
 
 		}])
@@ -101,9 +123,10 @@
 
 	<script>
 		update=function(obj){
+			
 			$thisone=obj;
 			$alt=$thisone.getAttribute("alt");
-			window.location.href="http://localhost:8081/tourist/index.php/Admin/Route/update/routeid/"+$alt;
+			window.location.href="update/routeid/"+$alt;
 		}
 	</script>
 

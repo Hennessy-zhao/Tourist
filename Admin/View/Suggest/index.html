@@ -71,16 +71,26 @@
 			<table class="table table-striped lists">
 				<thead>
 					<tr>
-						<th width="15%">投诉人</th>
-						<th width="15%">联系电话</th>
-						<th width="15%">邮箱</th>
-						<th width="20%">投诉内容</th>
-						<th width="20%">回复内容</th>
+						<th width="8%" ng-class="{orderselect:orderType=='id'}">
+							编号 <span ng-click="changeOrder('id')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="15%" ng-class="{orderselect:orderType=='name'}">
+							投诉人 <span ng-click="changeOrder('name')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="15%" ng-class="{orderselect:orderType=='phone'}">
+							联系电话 <span ng-click="changeOrder('phone')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="15%" ng-class="{orderselect:orderType=='email'}">
+							邮箱 <span ng-click="changeOrder('email')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="17%">投诉内容</th>
+						<th width="17%">回复内容</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="task in routes | filter:search">
+					<tr ng-repeat="task in routes | filter:search | orderBy:order+orderType">
+						<td>{{task.id}}</td>
 						<td>{{task.name}}</td>
 						<td>{{task.phone}}</td>
 						<td>{{task.email}}</td>
@@ -118,7 +128,17 @@
 			});
 
 
-			
+			$scope.orderType="id";
+			$scope.order="";
+
+			$scope.changeOrder=function(type){
+				$scope.orderType=type;
+				if ($scope.order=='') {
+					$scope.order='-';
+				}else{
+					$scope.order='';
+				}
+			}
 
 		}])
 

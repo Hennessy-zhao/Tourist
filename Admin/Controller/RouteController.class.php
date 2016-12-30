@@ -19,7 +19,7 @@ class RouteController extends Controller {
         
             # code...
             $arrs=$arrs."{";
-            $arrs=$arrs."id : '".$list['id']."',";
+            $arrs=$arrs."id : ".$list['id'].",";
             $arrs=$arrs."name : '".$list['name']."',";
             $arrs=$arrs."traveldesc : '".$list['traveldesc']."',";
             $arrs=$arrs."daynumber : '".$list['daynumber']."',";
@@ -145,7 +145,7 @@ class RouteController extends Controller {
     public function infoupdate(){
         $upload = new \Think\Upload();
         $upload->maxSize   =     3145728 ;
-        $upload->rootPath  =     './Public/test/'; 
+        $upload->rootPath  =     './Public/routepic/'; 
         $upload->savePath  =     ''; 
         $upload->saveName  =        array('uniqid',''); 
         $upload->uploadReplace=true;    
@@ -164,11 +164,11 @@ class RouteController extends Controller {
         }else if ($count==1) {
             if (I('post.images')!='') {
                 $data['image'] = $info[0]["savename"];
-                echo $data['image'];
+               
             }
             else{
                 $data['liveimg'] = $info[1]["savename"];
-                echo $data['liveimg']; 
+                
             }
 
             $where['id']=$id;
@@ -186,12 +186,9 @@ class RouteController extends Controller {
         $datas['daytimes']=I('post.daytimes');
         $results=M('routes')->where($where)->save($datas);
 
-        if ($results) {
-            $this->redirect("Route/index");
-        }
-        else{
-            echo "系统故障";
-        }
+        $this->redirect("Route/index");
+        
+       
 
             
         

@@ -30,11 +30,11 @@
 	</header>
 	
 	<section>
-		<div id="numbers" class="col-md-3">
+		<!-- <div id="numbers" class="col-md-3">
 			<img src="__PUBLIC__/images/admin/card.jpg" alt="">
-			328
+			{$count}
 			<p>users</p>
-		</div>
+		</div> -->
 		<div id="routes" class="col-md-11" ng-controller="contentController">
 			<div id="titles" class="col-md-12">
 				<span class="glyphicon glyphicon-list"></span>
@@ -48,17 +48,31 @@
 			<table class="table table-striped lists">
 				<thead>
 					<tr>
-						<th width="20%">真名</th>
-						<th width="25%">邮箱</th>
-						<th width="20%">电话</th>
-						<th width="10%">订单个数</th>
-						<th width="10%">投诉个数</th>
+						<th width="8%"  ng-class="{orderselect:orderType=='id'}">
+							编号 <span ng-click="changeOrder('id')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="20%" ng-class="{orderselect:orderType=='username'}">
+							用户名 <span ng-click="changeOrder('username')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="23%" ng-class="{orderselect:orderType=='email'}">
+							邮箱 <span ng-click="changeOrder('email')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="15%" ng-class="{orderselect:orderType=='phone'}">
+							电话 <span ng-click="changeOrder('phone')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="10%" ng-class="{orderselect:orderType=='ordercount'}">
+							订单个数 <span ng-click="changeOrder('ordercount')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
+						<th width="10%" ng-class="{orderselect:orderType=='advisecount'}">
+							投诉个数 <span ng-click="changeOrder('advisecount')" ng-class="{'glyphicon  glyphicon-chevron-up order' :order=='','glyphicon glyphicon-chevron-down order' :order=='-'}"></span>
+						</th>
 						<th>操作</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="task in knows | filter:search">
-						<td>{{task.truename}}</td>
+					<tr ng-repeat="task in knows | filter:search | orderBy:order+orderType">
+						<td>{{task.id}}</td>
+						<td>{{task.username}}</td>
 						<td>{{task.email}}</td>
 						<td>{{task.phone}}</td>
 						<td>{{task.ordercount}}</td>
@@ -95,6 +109,19 @@
 			});
 
 
+			$scope.orderType="id";
+			$scope.order="";
+
+			$scope.changeOrder=function(type){
+				$scope.orderType=type;
+				if ($scope.order=='') {
+					$scope.order='-';
+				}else{
+					$scope.order='';
+				}
+			}
+
+
 			
 
 		}])
@@ -106,7 +133,7 @@
 			$thisone=obj;
 			$alt=$thisone.getAttribute("alt");
 
-			window.location.href="http://localhost:8081/tourist/index.php/Admin/user/look/userid/"+$alt;
+			window.location.href="look/userid/"+$alt;
 		}
 	</script>
 	

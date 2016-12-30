@@ -5,6 +5,8 @@ var app=angular.module("myapp",[]);
 app.controller("contentController",['$scope','$http',function($scope,$http){
 	$scope.repeatusername=false;
 	$scope.repeatidnumber=false;
+	$scope.repeatemail=false;
+
 
 
 	$scope.$watch('data.username',function(body){
@@ -40,6 +42,24 @@ app.controller("contentController",['$scope','$http',function($scope,$http){
 			});
 		}
 	});
+
+
+	$scope.$watch('data.email',function(body){
+		if (body) {
+			$http.get("repeatemail/email/"+body
+				).success(function(data){
+					
+				if (data==1) {
+					$scope.repeatemail=true;
+				}
+				else{
+					$scope.repeatemail=false;
+				}
+					
+					
+			});
+		}
+	})
 }])
 
 

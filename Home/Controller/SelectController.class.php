@@ -125,6 +125,14 @@ class SelectController extends Controller {
             $results=M('ordermemeber')->add($data2);
         }
 
+        $wheres['id']=$routeid;
+        $list=M('routes')->where($wheres)->select();
+        $emailmessage=$truename."先生/女士，您好，您的旅游订单已提交，我们的导游会尽快联系您。具体旅游信息如下：\n".$list[0]['name']."\n 旅游简介：".$list[0]['traveldesc']."\n 旅游天数：".$list[0]['daynumber']."\n 旅行时间：".$list[0]['daytimes']."\n 交通:".$list[0]['traffic']."\n 住宿条件：".$list[0]['livedesc']."\n 三餐条件：".$list[0]['fooddesc']."\n 感谢您的参加。";
+        $whereuser['id']=$userid;
+        $useremail=M('user')->where($whereuser)->getField('email');
+        sendMail($useremail,'旅行信息',$emailmessage);
+
+
        $this->redirect("Home/select/index/routeid/".$routeid);
         
     }

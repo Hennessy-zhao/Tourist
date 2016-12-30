@@ -66,10 +66,34 @@
 
 		<div class="col-md-12">
 			<h3><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;向他发送邮件</h3>
-			<textarea class="form-control" rows="3" style="width: 60%;"></textarea>
+			<textarea class="form-control" rows="3" style="width: 60%;" id="messages"></textarea>
 			<br>
-			<button class="btn btn-primary">发送</button>
+			<button alt="{$user.email}" class="btn btn-primary" id="submitbtn">发送信息</button>
 		</div> 
 	</section>
+
+
+	<script>
+		$(function(){
+			$("#submitbtn").click(function(){
+				$msgs=$("#messages").val();
+				$email=$("#submitbtn").attr("alt");
+				
+				$.post("{:U('Admin/User/doemail','','')}",{
+				          email : $email,
+				          messages : $msgs
+				      },function(data){
+				        if (data==1) {
+				           
+				            alert("您已成功向用户发送邮件")
+				        }
+				        else
+				        {
+				          	alert("*系统异常，请稍后再试");
+				        }
+				})
+			})
+		})
+	</script>
 </body>
 </html>

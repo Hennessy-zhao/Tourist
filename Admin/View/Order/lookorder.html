@@ -36,7 +36,7 @@
 	
 	<section>
 		<div id="routes" class="col-md-11" ng-controller="contentController">
-			<div id="titles" class="col-md-12">
+			<div id="titles" alt="{$routeid}" class="col-md-12">
 				<span class="glyphicon glyphicon-list"></span>
 				<p>路线&nbsp;{$routename}&nbsp;订单</p>
 				
@@ -52,19 +52,19 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- <tr ng-repeat="task in routes | filter:search"> -->
+					
 					<foreach name="order" item="order" >
 					<tr>
 						<td>{$order['username']}</td>
 						<td>{$order['memcount']}</td>
 						<td>
 							<foreach name="member" item="member" >
-							<if condition="$member['orderid'] eq $order['id'] ">
+							<eq name="order.id" value="$member.orderid">
 							姓名：{$member['name']}
 							&nbsp;&nbsp;
 							身份证号:{$member['idnumber']}
 							<br/>
-							</if>
+							</eq>
 							</foreach>
 						</td>
 						<td>{$order['price']}</td>
@@ -118,9 +118,11 @@
 		deletes=function(obj){
 			$thisone=obj;
 			$alt=$thisone.getAttribute("alt");
+			$routeid=$("#titles").attr("alt");
 			if (confirm("确定删除该订单吗？？")) {
 				$.post("{:U('Admin/Order/deletorder','','')}",{
-				          id : $alt
+				          id : $alt,
+				          routeid : $routeid
 				      },function(data){
 				        if (data==1) {
 				           
